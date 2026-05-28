@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional
 
 
 @Configuration
-@Profile("!Prod")
 class BaseInitData(
     private val postService: PostService
 ) {
