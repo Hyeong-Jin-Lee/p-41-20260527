@@ -16,7 +16,7 @@ permissions:
   packages: write
 
 env:
-  DOCKER_IMAGE_NAME: app260527 # 공통으로 설정해도 됨 (하지만 output도 병행)
+  DOCKER_IMAGE_NAME: app260528 # 공통으로 설정해도 됨 (하지만 output도 병행)
 
 jobs:
   makeTagAndRelease:
@@ -76,7 +76,7 @@ jobs:
 
       - name: export image name
         id: export_image
-        run: echo "image_name=app260527" >> $GITHUB_OUTPUT
+        run: echo "image_name=app260528" >> $GITHUB_OUTPUT
 
       - name: 빌드 앤 푸시
         uses: docker/build-push-action@v3
@@ -85,7 +85,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ steps.export_owner.outputs.owner_lc }}/${{ steps.export_image.outputs.image_name }}:${{ needs.makeTagAndRelease.outputs.tag_name }}
-            ghcr.io/${{ steps.export_owner.outputs.owner_lc }}/${{ steps.export_image.outputs.image_name }}:latest-2
+            ghcr.io/${{ steps.export_owner.outputs.owner_lc }}/${{ steps.export_image.outputs.image_name }}:latest
 
 
   deploy:
